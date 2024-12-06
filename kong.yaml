@@ -9,7 +9,7 @@ services:
       - name: invoices3
         paths:
           - /invoices3
-        strip_path: false
+        strip_path: true
 
   - name: invoices2_service
     host: invoices2_upstream
@@ -18,7 +18,7 @@ services:
       - name: invoices2
         paths:
           - /invoices2
-        strip_path: false
+        strip_path: true
 
 upstreams:
   - name: invoices3_upstream
