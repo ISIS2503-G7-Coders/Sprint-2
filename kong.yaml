@@ -27,7 +27,7 @@ upstreams:
     - target: 10.128.0.87:8080
       weight: 100
 
-    - name: facturas_upstream
+  - name: facturas_upstream
     targets:
-      - target: 10.128.0.89:8080
-        weight: 100
+    - target: 10.128.0.89:8080
+      weight: 100
