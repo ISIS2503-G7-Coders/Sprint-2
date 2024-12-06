@@ -10,7 +10,7 @@ invoices_collection = db.get_collection("invoices")
 
 async def set_invoices_db():
     # Crea índices únicos en `institution_code` y `_id`
-    await invoices_collection.create_index("institution_code", unique=True)
+    await invoices_collection.create_index("institution_code")
 
 
 # Representa un ObjectId en la base de datos
