@@ -1,0 +1,73 @@
+resources:
+
+# Database instance
+- name: msd-invoices-db-2
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-a
+    machineType: https://www.googleapis.com/compute/v1/projects/isis2503-talleres-434905/zones/us-central1-a/machineTypes/e2-micro
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: https://www.googleapis.com/compute/v1/projects/cos-cloud/global/images/cos-101-17162-463-8
+    networkInterfaces:
+    - network: https://www.googleapis.com/compute/v1/projects/isis2503-talleres-434905/global/networks/default
+      networkIP: 10.128.0.88
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
+    tags:
+      items: 
+      - msd-service-db2
+    metadata:
+      items:
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          docker run --restart=always -d --name invoices-db -p 27017:27017 \
+                            -e MONGO_INITDB_ROOT_USERNAME=admin \
+                            -e MONGO_INITDB_ROOT_PASSWORD=isis2503 \
+                            mongodb/mongodb-community-server
+
+# Service instance
+- name: msd-invoices-ms-2
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-a
+    machineType: https://www.googleapis.com/compute/v1/projects/isis2503-talleres-434905/zones/us-central1-a/machineTypes/e2-micro
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20240307b
+    networkInterfaces:
+    - network: https://www.googleapis.com/compute/v1/projects/isis2503-talleres-434905/global/networks/default
+      networkIP: 10.128.0.89
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
+    tags:
+      items: 
+      - msd-services-firewall
+    metadata:
+      items:
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          sudo apt-get update
+          sudo apt install software-properties-common -y
+          sudo add-apt-repository ppa:deadsnakes/ppa -y
+          sudo apt-get update
+          sudo apt install python3.12 -y
+          sudo curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
+          sudo mkdir /home/sprint4
+          cd /home/sprint4
+          sudo git clone https://github.com/ISIS2503-G7-Coders/Sprint-2.git
+          sudo git checkout facturacion2
+          cd Sprint-2/invoices_service
+          sudo python3.12 -m pip install -r requirements.txt

@@ -3,7 +3,7 @@ from typing import Annotated
 from pydantic.functional_validators import BeforeValidator
 
 client = motor.motor_asyncio.AsyncIOMotorClient(
-    "mongodb://admin:isis2503@10.128.0.86:27017?retryWrites=true&w=majority"
+    "mongodb://admin:isis2503@10.128.0.88:27017?retryWrites=true&w=majority"
 )
 db = client.get_database("invoices_db")
 invoices_collection = db.get_collection("invoices")
