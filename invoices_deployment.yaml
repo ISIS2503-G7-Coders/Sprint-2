@@ -56,7 +56,7 @@ resources:
     - IPProtocol: TCP
       ports: 
       - 5432
-- name: msd-service-db
+- name: msd-service-db2
   type: compute.v1.firewall
   properties:
     network: https://www.googleapis.com/compute/v1/projects/isis2503-talleres-434905/global/networks/default
@@ -92,7 +92,7 @@ resources:
         type: ONE_TO_ONE_NAT
     tags:
       items: 
-      - msd-service-db
+      - msd-service-db2
     metadata:
       items:
       - key: startup-script
