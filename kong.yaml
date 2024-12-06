@@ -5,9 +5,9 @@ services:
     host: invoices_uptream
     protocol: http
     routes:
-      - name: invoices
+      - name: invoices1
         paths:
-          - /invoices
+          - /invoices1
         strip_path: false
 
   - name: invoices2_service
