@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List
 from models.db import PyObjectId
+from typing import Optional
 
 # Modelo de factura individual
 class Invoice(BaseModel):
