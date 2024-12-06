@@ -9,7 +9,7 @@ services:
       - name: invoices3
         paths:
           - /invoices3
-        strip_path: true
+        strip_path: false
 
   - name: invoices2_service
     host: invoices2_upstream
@@ -18,15 +18,29 @@ services:
       - name: invoices2
         paths:
           - /invoices2
-        strip_path: true
+        strip_path: false
+
+  - name: invoices4_service
+    host: invoices4_uptream
+    protocol: http
+    routes:
+      - name: invoices4
+        paths:
+          - /invoices4
+        strip_path: false
 
 upstreams:
   - name: invoices3_upstream
     targets:
-      - target: 10.128.0.87:8080
+      - target: 10.128.0.90:8080
         weight: 100
       
   - name: invoices2_upstream
     targets:
     - target: 10.128.0.89:8080
       weight: 100
+
+    - name: invoices4_upstream
+    targets:
+      - target: 10.128.0.87:8080
+        weight: 100
