@@ -45,20 +45,6 @@ resources:
 - name: msd-service-db
   type: compute.v1.firewall
   properties:
-    network: https://www.googleapis.com/compute/v1/projects/<id-proyecto>/global/networks/default
-    priority: 1000
-    direction: INGRESS
-    sourceTags: 
-    - msd-services-firewall
-    targetTags:
-    - msd-service-db
-    allowed:
-    - IPProtocol: TCP
-      ports: 
-      - 5432
-- name: msd-service-db
-  type: compute.v1.firewall
-  properties:
     network: https://www.googleapis.com/compute/v1/projects/isis2503-talleres-434905/global/networks/default
     priority: 1000
     direction: INGRESS
