@@ -1,11 +1,24 @@
 from pydantic import BaseModel, Field, ConfigDict
-from typing import List
-from models.db import PyObjectId
-from typing import Optional
+from typing import List, Optional
+from bson import ObjectId
+
+class PyObjectId(ObjectId):
+    """Clase para manejar ObjectId de MongoDB en Pydantic."""
+
+    @classmethod
+    def __get_validators__(cls):
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, v):
+        if not ObjectId.is_valid(v):
+            raise ValueError("Invalid ObjectId")
+        return str(v)
+
 
 # Modelo de factura individual
 class Invoice(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
+    id: Optional[PyObjectId] = Field(None, alias="_id")
     institution_code: str = Field(..., description="Código de la institución")
     amount: float = Field(..., description="Monto total de la factura")
     date: str = Field(..., description="Fecha de emisión")
@@ -27,4 +40,3 @@ class Invoice(BaseModel):
 # Colección de facturas
 class InvoiceCollection(BaseModel):
     invoices: List[Invoice] = Field(...)
-
