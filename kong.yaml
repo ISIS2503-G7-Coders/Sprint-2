@@ -2,13 +2,13 @@ _format_version: "2.1"
 
 services:
 
-  - name: invoices1_service
-    host: invoices1_uptream
+  - name: invoices3_service
+    host: invoices3_uptream
     protocol: http
     routes:
-      - name: invoices1
+      - name: invoices3
         paths:
-          - /invoices1
+          - /invoices3
         strip_path: false
 
   - name: invoices2_service
@@ -21,12 +21,12 @@ services:
         strip_path: false
 
 upstreams:
-  - name: invoices1_upstream
+  - name: invoices3_upstream
     targets:
-      - target: 10.128.0.89:8080
+      - target: 10.128.0.87:8080
         weight: 100
       
   - name: invoices2_upstream
     targets:
-    - target: 10.128.0.87:8080
+    - target: 10.128.0.89:8080
       weight: 100
