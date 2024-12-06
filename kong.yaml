@@ -10,10 +10,22 @@ services:
           - /invoices
         strip_path: false
 
+  - name: invoices2_service
+    host: invoices_upstream
+    protocol: http
+    routes:
+      - name: invoices2
+        paths:
+          - /invoices2
+        strip_path: false
+
 upstreams:
   - name: invoices_upstream
     targets:
       - target: 10.128.0.87:8080
         weight: 100
-      - target: 10.128.0.89:8080
-        weight: 100
+      
+  - name: invoices2_upstream
+    targets:
+    - target: 10.128.0.89:8080
+      weight: 100
