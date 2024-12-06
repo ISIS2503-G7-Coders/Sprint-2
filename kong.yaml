@@ -9,11 +9,11 @@ services:
         paths:
           - /invoices
         strip_path: false
-  
-  - name: facturaciones_service
 
 upstreams:
-  - name: institutions_upstream
+  - name: invoices_upstream
     targets:
-      - target: <ip-microservicio-interna>:8080
+      - target: 10.128.0.87:8080
+        weight: 100
+      - target: 10.128.0.89:8080
         weight: 100
