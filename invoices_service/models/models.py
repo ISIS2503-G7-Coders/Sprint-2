@@ -1,10 +1,11 @@
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List
 from models.db import PyObjectId
+from typing import Optional
 
 # Modelo de factura individual
 class Invoice(BaseModel):
-    id: str = Field(..., alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     institution_code: str = Field(..., description="Código de la institución")
     amount: float = Field(..., description="Monto total de la factura")
     date: str = Field(..., description="Fecha de emisión")
