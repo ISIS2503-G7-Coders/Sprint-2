@@ -14,7 +14,7 @@ def create_app():
     async def on_startup():
         await db.set_invoices_db()
 
-    @app.get("/health-check")
+    @app.get("/health-check/", include_in_schema=False)
     async def health_check():
         return {"status": "OK"}   
 
