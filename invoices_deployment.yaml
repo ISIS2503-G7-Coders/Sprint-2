@@ -42,7 +42,7 @@ resources:
       - key: startup-script
         value: |
           #!/bin/bash
-          docker run --restart=always -d --name places-db -p 27017:27017 \
+          docker run --restart=always -d --name invoices-db -p 27017:27017 \
                             -e MONGO_INITDB_ROOT_USERNAME=admin \
                             -e MONGO_INITDB_ROOT_PASSWORD=isis2503 \
                             mongodb/mongodb-community-server
@@ -80,8 +80,8 @@ resources:
           sudo apt-get update
           sudo apt install python3.12 -y
           sudo curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
-          sudo mkdir /home/labs
-          cd /home/labs
+          sudo mkdir /home/sprint4
+          cd /home/sprint4
           sudo git clone https://github.com/ISIS2503-G7-Coders/Sprint-2.git
           sudo git checkout facturacion
           cd Sprint-2/invoices_service
