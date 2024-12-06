@@ -11,8 +11,8 @@ services:
           - /invoices
         strip_path: false
 
-  - name: invoices4_service
-    host: invoices4_uptream
+  - name: invoices2_service
+    host: invoices2_uptream
     protocol: http
     routes:
       - name: invoices2
