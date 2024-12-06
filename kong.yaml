@@ -1,0 +1,19 @@
+_format_version: "2.1"
+
+services:
+  - name: invoices_service
+    host: invoices_uptream
+    protocol: http
+    routes:
+      - name: invoices
+        paths:
+          - /invoices
+        strip_path: false
+  
+  - name: facturaciones_service
+
+upstreams:
+  - name: institutions_upstream
+    targets:
+      - target: <ip-microservicio-interna>:8080
+        weight: 100
