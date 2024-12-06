@@ -3,7 +3,7 @@ _format_version: "2.1"
 services:
 
   - name: invoices1_service
-    host: 10.128.0.87
+    host: invoices1_uptream
     protocol: http
     routes:
       - name: invoices1
