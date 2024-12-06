@@ -1,7 +1,7 @@
 import motor.motor_asyncio
 
 client = motor.motor_asyncio.AsyncIOMotorClient(
-    "mongodb://localhost:27017/"
+    "mongodb://admin:isis2503@10.128.0.86:27017?retryWrites=true&w=majority"
 )
 db = client.get_database("invoices_db")
 invoices_collection = db.get_collection("invoices")

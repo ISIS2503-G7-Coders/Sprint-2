@@ -16,7 +16,7 @@ resources:
       - 27017
 
 # Database instance
-- name: msd-places-db
+- name: msd-invoices-db
   type: compute.v1.instance
   properties:
     zone: us-central1-a
@@ -48,7 +48,7 @@ resources:
                             mongodb/mongodb-community-server
 
 # Service instance
-- name: msd-places-ms
+- name: msd-invoices-ms
   type: compute.v1.instance
   properties:
     zone: us-central1-a
