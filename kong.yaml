@@ -21,7 +21,7 @@ services:
         strip_path: false
 
 upstreams:
-  - name: invoices_upstream
+  - name: invoices1_upstream
     targets:
       - target: 10.128.0.87:8080
         weight: 100
