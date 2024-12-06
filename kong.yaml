@@ -11,13 +11,13 @@ services:
           - /invoices
         strip_path: false
 
-  - name: invoices2_service
-    host: invoices2_uptream
+  - name: facturas_service
+    host: facturas_uptream
     protocol: http
     routes:
-      - name: invoices2
+      - name: facturas
         paths:
-          - /invoices2
+          - /facturas
         strip_path: false
 
 upstreams:
@@ -27,7 +27,7 @@ upstreams:
     - target: 10.128.0.87:8080
       weight: 100
 
-    - name: invoices2_upstream
+    - name: facturas_upstream
     targets:
       - target: 10.128.0.89:8080
         weight: 100
