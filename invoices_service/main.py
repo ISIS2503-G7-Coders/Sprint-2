@@ -14,6 +14,10 @@ def create_app():
     async def on_startup():
         await db.set_invoices_db()
 
+    @app.get("/health-check")
+    async def health_check():
+        return {"status": "OK"}   
+
     app.include_router(invoices_view.router, prefix="/api")
 
     return app
